@@ -126,4 +126,28 @@ public class PomodoroShould
             .Should()
             .Be(PomodoroState.LongBreak);
     }
+
+    [Test]
+    public void SwitchToWorkStateAfterLongBreak()
+    {
+        var timer = new FakeTimer();
+        Pomodoro pomodoro = new(timer);
+
+        pomodoro.Start();
+
+        Enumerable
+            .Range(0, 6300)
+            .ToList()
+            .ForEach(_ => { timer.SimulateClockTick(); });
+
+        pomodoro
+            .GetRemainingTime()
+            .Should()
+            .Be(1500);
+
+        pomodoro
+            .GetState()
+            .Should()
+            .Be(PomodoroState.Work);
+    }
 }
