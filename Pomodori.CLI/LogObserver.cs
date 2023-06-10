@@ -21,6 +21,6 @@ public class LogObserver : IObserver<PomodoroStateChangedData>
 
     public void OnNext(PomodoroStateChangedData value)
     {
-        _fileWriter.Write($"State changed from {value.PreviousState} to {value.CurrentState}.\n");
+        _fileWriter.Write($"State changed from {value.PreviousState} to {value.CurrentState}.");
     }
 }
