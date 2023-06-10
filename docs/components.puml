@@ -1,0 +1,14 @@
+﻿@startuml
+class Pomodoro
+interface ITimer
+
+
+Pomodoro --> ITimer
+
+class Timer implements ITimer
+class Program 
+
+Program --> Pomodoro
+
+
+@enduml
