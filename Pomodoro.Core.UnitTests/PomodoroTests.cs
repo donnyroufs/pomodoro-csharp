@@ -11,7 +11,6 @@ public class PomodoroShould
         var timer = new FakeTimer();
         Pomodoro pomodoro = new(timer);
 
-
         pomodoro
             .GetState()
             .Should()
@@ -149,5 +148,19 @@ public class PomodoroShould
             .GetState()
             .Should()
             .Be(PomodoroState.Work);
+    }
+
+    [Test]
+    [TestCase(PomodoroState.Work)]
+    [TestCase(PomodoroState.ShortBreak)]
+    [TestCase(PomodoroState.LongBreak)]
+    public void NotBeAbleToStartAPomodoroIfInProgress(PomodoroState state)
+    {
+        var timer = new FakeTimer();
+        Pomodoro pomodoro = new(timer, state);
+
+        Action act = () => pomodoro.Start();
+
+        act.Should().Throw<AlreadyInProgressException>();
     }
 }

@@ -11,6 +11,12 @@ public class Pomodoro
     {
         _timer = timer;
     }
+    
+    public Pomodoro(ITimer timer, PomodoroState state)
+    {
+        _timer = timer;
+        _state = state;
+    }
 
     public double GetRemainingTime()
     {
@@ -19,6 +25,11 @@ public class Pomodoro
 
     public void Start()
     {
+        if (_state != PomodoroState.Pending)
+        {
+            throw new AlreadyInProgressException();
+        }
+        
         _state = PomodoroState.Work;
         _timer.Tick(OnTick);
     }
