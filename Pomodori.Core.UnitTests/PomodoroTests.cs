@@ -1,4 +1,5 @@
 using FluentAssertions;
+using Moq;
 
 namespace Pomodori.Core.UnitTests;
 
@@ -13,7 +14,7 @@ public class PomodoroShould
         timer = new FakeTimer();
         pomodoro = new Pomodoro(timer);
     }
-    
+
     [Test]
     public void BeInPendingStateWhenNotStarted()
     {
@@ -124,6 +125,33 @@ public class PomodoroShould
         var act = () => pomodoro.Start();
 
         act.Should().Throw<AlreadyInProgressException>();
+    }
+
+    [Test]
+    public void DispatchesStateChangedEvent_OnStateChange()
+    {
+        var mockObserver = new Mock<IObserver<PomodoroStateChangedData>>();
+        pomodoro.Attach(mockObserver.Object);
+        pomodoro.Start();
+        timer.SimulateWork();
+
+        mockObserver
+            .Verify(x =>
+                    x.OnNext(new PomodoroStateChangedData(PomodoroState.Work, PomodoroState.ShortBreak)),
+                Times.Once);
+    }
+
+    [Test]
+    public void DispatchesStateChangedEvent_OnStart()
+    {
+        var mockObserver = new Mock<IObserver<PomodoroStateChangedData>>();
+        pomodoro.Attach(mockObserver.Object);
+        pomodoro.Start();
+
+        mockObserver
+            .Verify(x =>
+                    x.OnNext(new PomodoroStateChangedData(PomodoroState.Pending, PomodoroState.Work)),
+                Times.Once);
     }
 
     private static int ToSeconds(int minutes)
