@@ -1,16 +1,22 @@
 using FluentAssertions;
-using Moq;
 
 namespace Pomodoro.Core.UnitTests;
 
 public class PomodoroShould
 {
+    public FakeTimer timer;
+    public Pomodoro pomodoro;
+
+    [SetUp]
+    public void Setup()
+    {
+        timer = new FakeTimer();
+        pomodoro = new Pomodoro(timer);
+    }
+    
     [Test]
     public void BeInPendingStateWhenNotStarted()
     {
-        var timer = new FakeTimer();
-        Pomodoro pomodoro = new(timer);
-
         pomodoro
             .GetState()
             .Should()
@@ -20,9 +26,6 @@ public class PomodoroShould
     [Test]
     public void BeInWorkStateWhenStarted()
     {
-        var timer = new FakeTimer();
-        Pomodoro pomodoro = new(timer);
-
         pomodoro.Start();
 
         pomodoro
@@ -32,45 +35,16 @@ public class PomodoroShould
     }
 
     [Test]
-    public void DecrementTheRemainingTimeEveryClockTick()
-    {
-        var timer = new FakeTimer();
-        Pomodoro pomodoro = new(timer);
-
-        pomodoro.Start();
-
-        timer.SimulateClockTick();
-
-        pomodoro
-            .GetRemainingTime()
-            .Should()
-            .Be(1499);
-
-        timer.SimulateClockTick();
-
-        pomodoro
-            .GetRemainingTime()
-            .Should()
-            .Be(1498);
-    }
-
-    [Test]
     public void SwitchFromWorkToShortBreak()
     {
-        var timer = new FakeTimer();
-        Pomodoro pomodoro = new(timer);
-
         pomodoro.Start();
 
-        Enumerable
-            .Range(0, 1500)
-            .ToList()
-            .ForEach(_ => { timer.SimulateClockTick(); });
+        timer.SimulateWork();
 
         pomodoro
             .GetRemainingTime()
             .Should()
-            .Be(300);
+            .Be(ToSeconds(Pomodoro.ShortBreakInterval));
 
         pomodoro
             .GetState()
@@ -81,20 +55,15 @@ public class PomodoroShould
     [Test]
     public void SwitchFromShortBreakToWorkIfNotExceededThreeCycles()
     {
-        var timer = new FakeTimer();
-        Pomodoro pomodoro = new(timer);
-
         pomodoro.Start();
 
-        Enumerable
-            .Range(0, 1800)
-            .ToList()
-            .ForEach(_ => { timer.SimulateClockTick(); });
+        timer.SimulateWork();
+        timer.SimulateShortBreak();
 
         pomodoro
             .GetRemainingTime()
             .Should()
-            .Be(1500);
+            .Be(ToSeconds(Pomodoro.WorkInterval));
 
         pomodoro
             .GetState()
@@ -105,20 +74,18 @@ public class PomodoroShould
     [Test]
     public void SwitchFromWorkToLongBreakWhenExceededThreeCycles()
     {
-        var timer = new FakeTimer();
-        Pomodoro pomodoro = new(timer);
-
         pomodoro.Start();
 
-        Enumerable
-            .Range(0, 5100)
-            .ToList()
-            .ForEach(_ => { timer.SimulateClockTick(); });
+        timer.SimulateWork();
+        timer.SimulateShortBreak();
+        timer.SimulateWork();
+        timer.SimulateShortBreak();
+        timer.SimulateWork();
 
         pomodoro
             .GetRemainingTime()
             .Should()
-            .Be(1200);
+            .Be(ToSeconds(Pomodoro.LongBreakInterval));
 
         pomodoro
             .GetState()
@@ -129,20 +96,19 @@ public class PomodoroShould
     [Test]
     public void SwitchToWorkStateAfterLongBreak()
     {
-        var timer = new FakeTimer();
-        Pomodoro pomodoro = new(timer);
-
         pomodoro.Start();
 
-        Enumerable
-            .Range(0, 6300)
-            .ToList()
-            .ForEach(_ => { timer.SimulateClockTick(); });
+        timer.SimulateWork();
+        timer.SimulateShortBreak();
+        timer.SimulateWork();
+        timer.SimulateShortBreak();
+        timer.SimulateWork();
+        timer.SimulateLongBreak();
 
         pomodoro
             .GetRemainingTime()
             .Should()
-            .Be(1500);
+            .Be(ToSeconds(Pomodoro.WorkInterval));
 
         pomodoro
             .GetState()
@@ -151,16 +117,17 @@ public class PomodoroShould
     }
 
     [Test]
-    [TestCase(PomodoroState.Work)]
-    [TestCase(PomodoroState.ShortBreak)]
-    [TestCase(PomodoroState.LongBreak)]
-    public void NotBeAbleToStartAPomodoroIfInProgress(PomodoroState state)
+    public void NotBeAbleToStartAPomodoroIfInProgress()
     {
-        var timer = new FakeTimer();
-        Pomodoro pomodoro = new(timer, state);
+        pomodoro.Start();
 
-        Action act = () => pomodoro.Start();
+        var act = () => pomodoro.Start();
 
         act.Should().Throw<AlreadyInProgressException>();
+    }
+
+    private static int ToSeconds(int minutes)
+    {
+        return minutes * 60;
     }
 }

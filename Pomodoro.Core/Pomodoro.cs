@@ -2,7 +2,11 @@
 
 public class Pomodoro
 {
-    private TimeSpan _time = TimeSpan.FromMinutes(25);
+    public const int WorkInterval = 25;
+    public const int ShortBreakInterval = 5;
+    public const int LongBreakInterval = 20;
+    
+    private TimeSpan _time = TimeSpan.FromMinutes(WorkInterval);
     private PomodoroState _state = PomodoroState.Pending;
     private int _cycles;
     private readonly ITimer _timer;
@@ -10,12 +14,6 @@ public class Pomodoro
     public Pomodoro(ITimer timer)
     {
         _timer = timer;
-    }
-    
-    public Pomodoro(ITimer timer, PomodoroState state)
-    {
-        _timer = timer;
-        _state = state;
     }
 
     public double GetRemainingTime()
@@ -60,16 +58,16 @@ public class Pomodoro
 
         if (_cycles % 3 == 0)
         {
-            SetState(PomodoroState.LongBreak, TimeSpan.FromMinutes(20));
+            SetState(PomodoroState.LongBreak, TimeSpan.FromMinutes(LongBreakInterval));
             return;
         }
 
-        SetState(PomodoroState.ShortBreak, TimeSpan.FromMinutes(5));
+        SetState(PomodoroState.ShortBreak, TimeSpan.FromMinutes(ShortBreakInterval));
     }
 
     private void HandleBreakState()
     {
-        SetState(PomodoroState.Work, TimeSpan.FromMinutes(25));
+        SetState(PomodoroState.Work, TimeSpan.FromMinutes(WorkInterval));
     }
 
     private void SetState(PomodoroState state, TimeSpan time)
@@ -77,12 +75,4 @@ public class Pomodoro
         _state = state;
         _time = time;
     }
-}
-
-public enum PomodoroState
-{
-    ShortBreak,
-    Pending,
-    Work,
-    LongBreak
 }
