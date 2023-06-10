@@ -7,30 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b10cec0c-c0db-4532-9ad4-d005fccbfc99" name="Changes" comment="refactor: pomodoro tests">
-      <change afterPath="$PROJECT_DIR$/Pomodori.CLI.UnitTests/Pomodori.CLI.UnitTests.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pomodori.CLI/Pomodori.CLI.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pomodori.CLI/Program.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pomodori.CLI/TimerImpl.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pomodori.CLI/ViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Pomodoro/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Pomodoro/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Pomodoro/.idea/indexLayout.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Pomodoro/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pomodoro.CLI/Pomodoro.CLI.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Pomodori.Core/Pomodori.Core.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pomodoro.CLI/Program.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pomodoro.Core.UnitTests/FakeTimer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pomodori.Core.UnitTests/FakeTimer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pomodoro.Core.UnitTests/Pomodoro.Core.UnitTests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Pomodori.Core.UnitTests/Pomodori.Core.UnitTests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pomodoro.Core.UnitTests/PomodoroTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pomodori.Core.UnitTests/PomodoroTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pomodoro.Core.UnitTests/Usings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pomodori.Core.UnitTests/Usings.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pomodoro.Core/AlreadyInProgressException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pomodori.Core/AlreadyInProgressException.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pomodoro.Core/ITimer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pomodori.Core/ITimer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pomodoro.Core/Pomodoro.Core.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pomodoro.Core/Pomodoro.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pomodori.Core/Pomodoro.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pomodoro.Core/PomodoroState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pomodori.Core/PomodoroState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pomodoro.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Pomodori.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/components.puml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/components.puml" afterDir="false" />
-    </list>
+    <list default="true" id="b10cec0c-c0db-4532-9ad4-d005fccbfc99" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -120,7 +97,7 @@
       <workItem from="1686238659363" duration="495000" />
       <workItem from="1686389936757" duration="368000" />
       <workItem from="1686390576768" duration="2473000" />
-      <workItem from="1686393096496" duration="10415000" />
+      <workItem from="1686393096496" duration="10762000" />
     </task>
     <task id="LOCAL-00001" summary="feat: decrement the timer on start">
       <created>1686393574664</created>
@@ -178,7 +155,28 @@
       <option name="project" value="LOCAL" />
       <updated>1686399028506</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="refactor: rename solution">
+      <created>1686403836697</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1686403836697</updated>
+    </task>
+    <task id="LOCAL-00010" summary="feat: hook up CLI">
+      <created>1686403848571</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1686403848571</updated>
+    </task>
+    <task id="LOCAL-00011" summary="feat: hook up CLI">
+      <created>1686403897081</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1686403897081</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,7 +192,9 @@
     <MESSAGE value="refactor: pomodoro" />
     <MESSAGE value="feat: prevent starting an in progress pomodoro" />
     <MESSAGE value="refactor: pomodoro tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: pomodoro tests" />
+    <MESSAGE value="refactor: rename solution" />
+    <MESSAGE value="feat: hook up CLI" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: hook up CLI" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
