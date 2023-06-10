@@ -25,7 +25,7 @@ public class PomodoroShould
         Pomodoro pomodoro = new(timer);
 
         pomodoro.Start();
-        
+
         pomodoro
             .GetState()
             .Should()
@@ -77,5 +77,53 @@ public class PomodoroShould
             .GetState()
             .Should()
             .Be(PomodoroState.ShortBreak);
+    }
+
+    [Test]
+    public void SwitchFromShortBreakToWorkIfNotExceededThreeCycles()
+    {
+        var timer = new FakeTimer();
+        Pomodoro pomodoro = new(timer);
+
+        pomodoro.Start();
+
+        Enumerable
+            .Range(0, 1800)
+            .ToList()
+            .ForEach(_ => { timer.SimulateClockTick(); });
+
+        pomodoro
+            .GetRemainingTime()
+            .Should()
+            .Be(1500);
+
+        pomodoro
+            .GetState()
+            .Should()
+            .Be(PomodoroState.Work);
+    }
+
+    [Test]
+    public void SwitchFromWorkToLongBreakWhenExceededThreeCycles()
+    {
+        var timer = new FakeTimer();
+        Pomodoro pomodoro = new(timer);
+
+        pomodoro.Start();
+
+        Enumerable
+            .Range(0, 5100)
+            .ToList()
+            .ForEach(_ => { timer.SimulateClockTick(); });
+
+        pomodoro
+            .GetRemainingTime()
+            .Should()
+            .Be(1200);
+
+        pomodoro
+            .GetState()
+            .Should()
+            .Be(PomodoroState.LongBreak);
     }
 }
