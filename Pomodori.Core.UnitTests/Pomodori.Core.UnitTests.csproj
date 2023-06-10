@@ -6,6 +6,10 @@
         <Nullable>enable</Nullable>
 
         <IsPackable>false</IsPackable>
+
+        <AssemblyName>Pomodori.Core.UnitTests</AssemblyName>
+
+        <RootNamespace>Pomodori.Core.UnitTests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -19,7 +23,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Pomodoro.Core\Pomodoro.Core.csproj" />
+      <ProjectReference Include="..\Pomodori.Core\Pomodori.Core.csproj" />
     </ItemGroup>
 
 </Project>

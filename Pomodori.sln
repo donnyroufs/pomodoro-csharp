@@ -1,14 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pomodoro.CLI", "Pomodoro.CLI\Pomodoro.CLI.csproj", "{D0853E6D-B0B0-447E-A2B3-BEB1423D2968}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pomodori.CLI", "Pomodori.CLI\Pomodori.CLI.csproj", "{D0853E6D-B0B0-447E-A2B3-BEB1423D2968}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EC710BB5-7206-4EEA-BE28-D678129DB274}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{B02F6C12-24DD-4FBE-8D56-767C212E04C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pomodoro.Core.UnitTests", "Pomodoro.Core.UnitTests\Pomodoro.Core.UnitTests.csproj", "{D4F0BA7A-812D-4AC7-80FF-2EA6AC28DB64}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pomodori.Core.UnitTests", "Pomodori.Core.UnitTests\Pomodori.Core.UnitTests.csproj", "{D4F0BA7A-812D-4AC7-80FF-2EA6AC28DB64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pomodoro.Core", "Pomodoro.Core\Pomodoro.Core.csproj", "{8CA6ECFA-9A38-4B93-8905-CEA98F456ADD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pomodori.Core", "Pomodori.Core\Pomodori.Core.csproj", "{8CA6ECFA-9A38-4B93-8905-CEA98F456ADD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pomodori.CLI.UnitTests", "Pomodori.CLI.UnitTests\Pomodori.CLI.UnitTests.csproj", "{6EBA2D3E-FC0D-4BD2-93E3-C4078DCF52C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,10 +30,15 @@ Global
 		{8CA6ECFA-9A38-4B93-8905-CEA98F456ADD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CA6ECFA-9A38-4B93-8905-CEA98F456ADD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CA6ECFA-9A38-4B93-8905-CEA98F456ADD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EBA2D3E-FC0D-4BD2-93E3-C4078DCF52C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EBA2D3E-FC0D-4BD2-93E3-C4078DCF52C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EBA2D3E-FC0D-4BD2-93E3-C4078DCF52C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EBA2D3E-FC0D-4BD2-93E3-C4078DCF52C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D0853E6D-B0B0-447E-A2B3-BEB1423D2968} = {EC710BB5-7206-4EEA-BE28-D678129DB274}
 		{D4F0BA7A-812D-4AC7-80FF-2EA6AC28DB64} = {B02F6C12-24DD-4FBE-8D56-767C212E04C0}
 		{8CA6ECFA-9A38-4B93-8905-CEA98F456ADD} = {EC710BB5-7206-4EEA-BE28-D678129DB274}
+		{6EBA2D3E-FC0D-4BD2-93E3-C4078DCF52C2} = {B02F6C12-24DD-4FBE-8D56-767C212E04C0}
 	EndGlobalSection
 EndGlobal

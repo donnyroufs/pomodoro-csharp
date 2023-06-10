@@ -1,15 +1,17 @@
-﻿namespace Pomodoro.Core.UnitTests;
+﻿using Pomodori.Core;
+
+namespace Pomodori.Core.UnitTests;
 
 public class FakeTimer : ITimer
 {
-    private Delegate _handler;
+    private Delegate? _handler;
 
     public void SimulateClockTick()
     {
-        _handler.DynamicInvoke();
+        _handler?.DynamicInvoke();
     }
 
-    public void Tick(Delegate handler)
+    public void Tick(Delegate? handler)
     {
         _handler = handler;
     }

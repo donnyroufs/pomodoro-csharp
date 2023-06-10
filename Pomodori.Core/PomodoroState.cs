@@ -1,4 +1,4 @@
-﻿namespace Pomodoro.Core;
+﻿namespace Pomodori.Core;
 
 public enum PomodoroState
 {

@@ -1,6 +1,6 @@
 using FluentAssertions;
 
-namespace Pomodoro.Core.UnitTests;
+namespace Pomodori.Core.UnitTests;
 
 public class PomodoroShould
 {
